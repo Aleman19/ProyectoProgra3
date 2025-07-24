@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuración del motor de vistas
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));  // ✅ <- Esta línea era lo que faltaba
+app.set('views', path.join(__dirname, 'views'));
 
 const citasRoutes = require('./routes/citas');
 app.use('/', citasRoutes);
