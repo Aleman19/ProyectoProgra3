@@ -20,4 +20,6 @@ exports.crear = (datos) => {
       else resolve(result);
     });
   });
+  
+
 };
