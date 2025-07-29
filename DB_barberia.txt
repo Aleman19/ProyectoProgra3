@@ -1,0 +1,89 @@
+CREATE DATABASE IF NOT EXISTS barberia;
+USE barberia;
+
+
+CREATE TABLE clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_cliente VARCHAR(100),
+    telefono_cliente VARCHAR(20),
+    correo_cliente VARCHAR(100)
+);
+
+
+CREATE TABLE servicios (
+    id_servicio INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_servicio VARCHAR(100),
+    duracion_servicio INT, -- en minutos
+    precio DECIMAL(10,2)
+);
+
+
+CREATE TABLE citas (
+    id_cita INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    fecha_cita DATE,
+    hora_cita TIME,
+    id_servicio INT,
+    barbero VARCHAR(100),
+    estado_cita VARCHAR(50),
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_servicio) REFERENCES servicios(id_servicio)
+);
+
+
+CREATE TABLE usuarios (
+    id_user INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_user VARCHAR(100),
+    contraseña_user VARCHAR(255),
+    rol_user VARCHAR(50)
+);
+
+
+INSERT INTO servicios (nombre_servicio, duracion_servicio, precio) VALUES
+('Corte y Barba V.I.P', 90, 15000.00),
+('Corte V.I.P', 60, 10000.00),
+('Barba V.I.P', 40, 8000.00),
+('Corte Kids', 40, 8000.00),
+('Rasurado de Cabeza y Barba V.I.P', 40, 15000.00),
+('Rasurado de Cabeza V.I.P', 30, 10000.00),
+('Marcado de Cabello con Navaja', 20, 4000.00),
+('Desintoxicación Iónica', 60, 25000.00),
+('Hidrofacial', 40, 25000.00),
+('Limpieza Facial Deluxe', 60, 15000.00);
+
+
+INSERT INTO clientes (nombre_cliente, telefono_cliente, correo_cliente) VALUES
+('José Rodríguez', '88881234', 'jose.r@gmail.com'),
+('María Pérez', '88992233', 'maria.p@gmail.com'),
+('Carlos Gómez', '88776655', 'carlos.g@gmail.com'),
+('Lucía Ramírez', '88114477', 'lucia.r@gmail.com'),
+('Esteban Mora', '87001122', 'esteban.m@gmail.com'),
+('Fernanda Castro', '87223344', 'fernanda.c@gmail.com'),
+('Luis Salazar', '87665544', 'luis.s@gmail.com'),
+('Ana Vargas', '89998877', 'ana.v@gmail.com'),
+('Kevin Solano', '86554433', 'kevin.s@gmail.com'),
+('Laura Araya', '85446622', 'laura.a@gmail.com');
+
+INSERT INTO usuarios (nombre_user, contraseña_user, rol_user) VALUES
+('admin1', 'admin123', 'admin'),
+('barbero1', 'barbero123', 'barbero'),
+('barbero2', 'barbero123', 'barbero'),
+('cliente1', 'cliente123', 'cliente'),
+('cliente2', 'cliente123', 'cliente'),
+('recepcion1', 'recepcion123', 'recepcionista'),
+('admin2', 'admin456', 'admin'),
+('cliente3', 'cliente456', 'cliente'),
+('barbero3', 'barbero456', 'barbero'),
+('cliente4', 'cliente789', 'cliente');
+
+INSERT INTO citas (id_cliente, fecha_cita, hora_cita, id_servicio, barbero, estado_cita) VALUES
+(1, '2025-07-20', '09:00:00', 1, 'Pedro Chaves', 'Confirmada'),
+(2, '2025-07-21', '10:00:00', 2, 'Andrés Vega', 'Pendiente'),
+(3, '2025-07-21', '11:00:00', 3, 'Pedro Chaves', 'Cancelada'),
+(4, '2025-07-22', '12:00:00', 4, 'Daniel Morales', 'Confirmada'),
+(5, '2025-07-22', '13:00:00', 5, 'Andrés Vega', 'Completada'),
+(6, '2025-07-23', '14:00:00', 6, 'Pedro Chaves', 'Confirmada'),
+(7, '2025-07-24', '15:00:00', 7, 'Daniel Morales', 'Pendiente'),
+(8, '2025-07-24', '16:00:00', 8, 'Andrés Vega', 'Confirmada'),
+(9, '2025-07-25', '17:00:00', 9, 'Pedro Chaves', 'Completada'),
+(10,'2025-07-25', '18:00:00', 10, 'Daniel Morales', 'Confirmada');
