@@ -7,6 +7,8 @@ const app = express();
 // Middleware y archivos estaticos
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Archivos estáticos (CSS, JS frontend)
 app.use(express.static(path.join(__dirname, 'public')));
  
 // Motor de plantillas
