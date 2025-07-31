@@ -21,14 +21,14 @@ const clienteRoutes = require('./routes/clienteRoutes');
 const citaRoutes = require('./routes/citaRoutes');
 const servicioRoutes = require('./routes/servicioRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
- 
+
 // llamar rutas
-app.use('/', clienteRoutes);        
-app.use('/citas', citaRoutes);      
-app.use('/servicios', servicioRoutes);
-app.use('/usuarios', usuarioRoutes);
- 
-//test
+app.use('/', clienteRoutes);         // Página de inicio y login
+app.use('/citas', citaRoutes);       // Agendar cita, listar citas, etc.
+app.use('/servicios', servicioRoutes); 
+app.use('/usuarios', usuarioRoutes); // Registro/Login
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
