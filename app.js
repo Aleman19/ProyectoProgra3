@@ -3,13 +3,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
- 
- 
+
 // Middleware y archivos estaticos
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// Archivos estáticos (CSS, JS frontend)
 app.use(express.static(path.join(__dirname, 'public')));
  
 // Motor de plantillas
@@ -23,10 +20,10 @@ const servicioRoutes = require('./routes/servicioRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 
 // llamar rutas
-app.use('/', clienteRoutes);         // Página de inicio y login
-app.use('/citas', citaRoutes);       // Agendar cita, listar citas, etc.
+app.use('/', clienteRoutes);         
+app.use('/citas', citaRoutes);       
 app.use('/servicios', servicioRoutes); 
-app.use('/usuarios', usuarioRoutes); // Registro/Login
+app.use('/usuarios', usuarioRoutes); 
 
 
 const PORT = process.env.PORT || 3000;
