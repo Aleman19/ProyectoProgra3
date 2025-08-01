@@ -85,21 +85,39 @@
         <div class="text-center">
             <button type="submit" class="btn btn-primary rounded-pill px-4">Enviar</button>
         </div>
+        <div id="mensajeEnviado" class="alert alert-success mt-4 d-none" role="alert">
+          Su mensaje fue enviado correctamente.
+      </div>
+
         </form>
     </section>
 
     <script>
         (() => {
-        'use strict'
-        const form = document.querySelector('form.needs-validation')
+          'use strict';
+        const form = document.querySelector('form.needs-validation');
+        const mensajeEnviado = document.getElementById('mensajeEnviado');
+
         form.addEventListener('submit', e => {
-            if (!form.checkValidity()) {
-            e.preventDefault()
-            e.stopPropagation()
-            }
-            form.classList.add('was-validated')
-        }, false)
-        })()
+          if (!form.checkValidity()) {
+          e.preventDefault();
+          e.stopPropagation();
+        form.classList.add('was-validated');
+        } else {
+          e.preventDefault(); // Evita envío real para mostrar mensaje
+          form.classList.add('was-validated');
+
+          // Mostrar mensaje de éxito
+          mensajeEnviado.classList.remove('d-none');
+
+          // Limpiar formulario después de 1.5s
+          setTimeout(() => {
+          form.reset();
+          form.classList.remove('was-validated');
+        }, 1500);
+      }
+    }, false);
+  })();
     </script>
     </main>
 
