@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
 const socketIO = require('socket.io')(server);
-const citaRoutes = require('./routes/citasRoutes');
+const citasRoutes = require('./routes/citasRoutes');
 require('dotenv').config();
 const db = require('./db/db');
 
