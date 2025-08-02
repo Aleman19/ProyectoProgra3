@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Rutas
 app.use('/', require('./routes/indexRoutes'));
-app.use('/citas', require('./routes/citasRoutes'));
+app.use('/citas/agendar', require('./routes/citasRoutes'));
 
 // Socket.IO (Chat en vivo)
 socketIO.on('connection', socket => {
