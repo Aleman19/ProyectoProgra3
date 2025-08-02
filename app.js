@@ -21,6 +21,6 @@ app.use('/', require('./routes/indexRoutes'));
 app.use('/citas', require('./routes/citaRoutes'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
