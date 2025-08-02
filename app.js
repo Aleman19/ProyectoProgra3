@@ -1,35 +1,32 @@
-console.log("📦 Iniciando servidor...");
-const express = require('express');
-const app = express();
-const path = require('path');
-const http = require('http');
-const server = http.createServer(app);
-const socketIO = require('socket.io')(server);
-const citasRoutes = require('./routes/citasRoutes');
 require('dotenv').config();
-const db = require('./db/db');
-
-// Middlewares
+const express = require('express');
+const path = require('path');
+const app = express();
+ 
+ 
+// Middleware y archivos estaticos
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+ 
+// Motor de plantillas
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// Rutas
-app.use('/', require('./routes/indexRoutes'));
-app.use('/citas', require('./routes/citasRoutes'));
-
-// Socket.IO (Chat en vivo)
-socketIO.on('connection', socket => {
-  console.log('🟢 Usuario conectado al chat');
-  socket.on('mensajeCliente', msg => {
-    console.log("💬 Cliente:", msg);
-    socketIO.emit('mensajeServidor', msg);
-  });
-});
-
+ 
+// Importar rutas
+const clienteRoutes = require('./routes/clienteRoutes');
+const citaRoutes = require('./routes/citaRoutes');
+const servicioRoutes = require('./routes/servicioRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
+ 
+// llamar rutas
+app.use('/', clienteRoutes);        
+app.use('/citas', citaRoutes);      
+app.use('/servicios', servicioRoutes);
+app.use('/usuarios', usuarioRoutes);
+ 
+ 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
