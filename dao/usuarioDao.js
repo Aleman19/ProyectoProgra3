@@ -1,4 +1,4 @@
-const db = require('../db/db');
+const db = require('../database/db');
 
 exports.autenticar = (usuario, contrasena) => {
   return new Promise((resolve, reject) => {

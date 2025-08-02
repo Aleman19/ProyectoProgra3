@@ -1,4 +1,4 @@
-const db = require('../db/db');
+const db = require('../database/db');
 
 exports.obtenerTodas = () => {
   return new Promise((resolve, reject) => {
