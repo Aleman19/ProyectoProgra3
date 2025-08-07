@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
+const db = require('./db'); // Asegurate de que el path es correcto
 
 
 // Middleware y archivos estaticos
@@ -25,6 +26,16 @@ app.use('/citas', citaRoutes);
 app.use('/servicios', servicioRoutes); 
 app.use('/usuarios', usuarioRoutes); 
 
+
+app.get('/test-db', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT 1');
+    res.send('✅ Conexión exitosa a la base de datos');
+  } catch (error) {
+    console.error('❌ Error al conectar con la base de datos:', error);
+    res.status(500).send('❌ Error al conectar con la base de datos');
+  }
+});
 //test
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
