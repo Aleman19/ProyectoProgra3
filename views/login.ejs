@@ -56,7 +56,7 @@
         <a href="/" class="me-4">Inicio</a>
         <a href="/servicios" class="me-4">Servicios</a>
         <a href="/contacto" class="me-4">Contacto</a>
-        <a href="/login" class="me-4">Login</a>
+        <a href="/usuarios/login" class="me-4">Login</a>
       </nav>
     </div>
   </header>
@@ -64,38 +64,38 @@
   <main class="container my-5">
     <section class="col-md-4 offset-md-4">
         <h2 class="text-center mb-4" style="color: #4b1979;">Iniciar Sesión</h2>
-        <form action="/login" method="POST" class="needs-validation" novalidate>
-        <div class="mb-3">
+        <!-- Cambié la acción para apuntar a /usuarios/login -->
+        <form action="/usuarios/login" method="POST" class="needs-validation" novalidate>
+          <div class="mb-3">
             <label for="correo" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="correo" name="correo" required />
             <div class="invalid-feedback">Ingresa tu correo.</div>
-        </div>
-        <div class="mb-3">
-            <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseña" name="contraseña" required />
+          </div>
+          <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required />
             <div class="invalid-feedback">Ingresa tu contraseña.</div>
-        </div>
-        <div class="text-center">
+          </div>
+          <div class="text-center">
             <button type="submit" class="btn btn-primary rounded-pill px-4">Ingresar</button>
-        </div>
+          </div>
         </form>
     </section>
  
     <script>
         (() => {
-        'use strict'
-        const form = document.querySelector('form.needs-validation')
-        form.addEventListener('submit', e => {
-            if (!form.checkValidity()) {
-            e.preventDefault()
-            e.stopPropagation()
-        }
-        form.classList.add('was-validated')
-        }, false)
-    })()
+          'use strict'
+          const form = document.querySelector('form.needs-validation')
+          form.addEventListener('submit', e => {
+              if (!form.checkValidity()) {
+                e.preventDefault()
+                e.stopPropagation()
+              }
+              form.classList.add('was-validated')
+          }, false)
+        })()
     </script>
-    </main>
- 
+  </main>
  
   <footer class="text-center py-4 mt-5">
     <p class="mb-0">&copy; 2025 Barba & Bigote. Todos los derechos reservados.</p>
